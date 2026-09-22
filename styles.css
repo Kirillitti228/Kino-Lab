@@ -1,0 +1,2095 @@
+/* ==========================================
+   KINO LAB
+   CINEMA STYLE
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
+
+
+/* ==========================================
+   VARIABLES
+========================================== */
+
+:root {
+    --black: #050505;
+    --dark: #090909;
+    --dark-2: #0d0d0d;
+    --card: #111111;
+    --card-hover: #181818;
+
+    --white: #f5f3ee;
+    --white-soft: #dedbd3;
+
+    --grey: #929292;
+    --grey-dark: #5d5d5d;
+
+    --gold: #d5b15a;
+    --gold-light: #e7c978;
+    --gold-dark: #9e813b;
+
+    --border: rgba(255, 255, 255, 0.08);
+    --border-light: rgba(255, 255, 255, 0.15);
+
+    --container: 1400px;
+}
+
+
+/* ==========================================
+   RESET
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    min-height: 100vh;
+
+    background: var(--black);
+
+    color: var(--white);
+
+    font-family: "Inter", sans-serif;
+
+    font-weight: 400;
+
+    line-height: 1.5;
+
+    overflow-x: hidden;
+}
+
+
+body.modal-open {
+    overflow: hidden;
+}
+
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+
+::selection {
+    background: var(--gold);
+    color: var(--black);
+}
+
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+.sr-only {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+
+    border: 0;
+}
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+.navbar {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 100;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(5, 5, 5, 0.96),
+            rgba(5, 5, 5, 0.80)
+        );
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.nav-container {
+    width: min(var(--container), 92%);
+
+    height: 82px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.logo-mark {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--gold);
+
+    color: var(--gold);
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 21px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+
+.logo:hover .logo-mark {
+    background: var(--gold);
+
+    color: var(--black);
+}
+
+
+.logo-text {
+    font-family: "DM Mono", monospace;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+}
+
+
+/* NAV LINKS */
+
+.nav-links {
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 45px;
+}
+
+
+.nav-links a {
+    position: relative;
+
+    color: var(--grey);
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    transition: color 0.3s ease;
+}
+
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -9px;
+
+    width: 0;
+    height: 1px;
+
+    background: var(--gold);
+
+    transition: width 0.3s ease;
+}
+
+
+.nav-links a:hover {
+    color: var(--white);
+}
+
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+
+/* LOGOUT */
+
+.logout-button {
+    padding: 10px 19px;
+
+    border: 1px solid var(--border-light);
+
+    background: transparent;
+
+    color: var(--grey);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    transition:
+        color 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.logout-button:hover {
+    color: var(--white);
+
+    border-color: var(--gold);
+
+    background: rgba(213, 177, 90, 0.06);
+
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================
+   HERO
+========================================== */
+
+.hero {
+    position: relative;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 150px 5% 100px;
+
+    background:
+        radial-gradient(
+            circle at 50% 48%,
+            rgba(213, 177, 90, 0.11),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 255, 255, 0.035),
+            transparent 25%
+        ),
+        var(--black);
+}
+
+
+/* GRID */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 75px 75px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black 0%,
+            rgba(0, 0, 0, 0.7) 50%,
+            transparent 100%
+        );
+
+    pointer-events: none;
+}
+
+
+/* VIGNETTE */
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 35%,
+            rgba(0, 0, 0, 0.55) 100%
+        );
+}
+
+
+.hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    animation:
+        heroAppear 1.1s ease both;
+}
+
+
+.section-label {
+    margin-bottom: 22px;
+
+    color: var(--gold);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+/* HERO TITLE */
+
+.hero h1 {
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(90px, 15vw, 220px);
+
+    font-weight: 500;
+
+    line-height: 0.78;
+
+    letter-spacing: -9px;
+
+    text-shadow:
+        0 0 50px rgba(213, 177, 90, 0.04);
+}
+
+
+.hero h1 span {
+    display: block;
+
+    margin-left: 105px;
+
+    color: var(--gold);
+
+    font-style: italic;
+}
+
+
+/* HERO DESCRIPTION */
+
+.hero-description {
+    margin-top: 50px;
+
+    color: var(--grey);
+
+    font-size: 14px;
+
+    letter-spacing: 0.8px;
+}
+
+
+/* HERO BUTTON */
+
+.hero-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    margin-top: 38px;
+
+    padding: 15px 22px;
+
+    border: 1px solid var(--border-light);
+
+    color: var(--white);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.hero-button span {
+    color: var(--gold);
+
+    font-size: 18px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.hero-button:hover {
+    border-color: var(--gold);
+
+    background:
+        rgba(213, 177, 90, 0.07);
+
+    transform: translateY(-3px);
+}
+
+
+.hero-button:hover span {
+    transform: translateX(6px);
+}
+
+
+/* ==========================================
+   HERO DECORATION
+========================================== */
+
+.hero-decoration {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+}
+
+
+.hero-decoration span {
+    position: absolute;
+
+    width: 1px;
+
+    height: 130px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(213, 177, 90, 0.35),
+            transparent
+        );
+
+    animation: decorationFloat 5s ease-in-out infinite;
+}
+
+
+.hero-decoration span:nth-child(1) {
+    top: 18%;
+    left: 12%;
+
+    transform: rotate(25deg);
+}
+
+
+.hero-decoration span:nth-child(2) {
+    top: 23%;
+    right: 15%;
+
+    height: 180px;
+
+    transform: rotate(-25deg);
+
+    animation-delay: 1s;
+}
+
+
+.hero-decoration span:nth-child(3) {
+    left: 20%;
+    bottom: 12%;
+
+    height: 90px;
+
+    transform: rotate(-40deg);
+
+    animation-delay: 2s;
+}
+
+
+/* ==========================================
+   MOVIES SECTION
+========================================== */
+
+.movies-section {
+    position: relative;
+
+    padding: 135px 0 155px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            var(--dark),
+            #080808
+        );
+
+    border-top: 1px solid var(--border);
+}
+
+
+.section-container {
+    width: min(var(--container), 92%);
+
+    margin: 0 auto;
+}
+
+
+/* SECTION HEADER */
+
+.section-header {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    margin-bottom: 55px;
+}
+
+
+.section-header h2 {
+    max-width: 700px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(50px, 6vw, 82px);
+
+    font-weight: 500;
+
+    line-height: 0.92;
+
+    letter-spacing: -3px;
+}
+
+
+.section-header h2 em {
+    color: var(--gold);
+}
+
+
+/* COUNTER */
+
+.movie-counter {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 3px;
+}
+
+
+.movie-counter span:first-child {
+    color: var(--gold);
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 44px;
+}
+
+
+.movie-counter span:last-child {
+    color: var(--grey-dark);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+
+/* ==========================================
+   CONTROLS
+========================================== */
+
+.movie-controls {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        220px
+        220px;
+
+    gap: 10px;
+
+    margin-bottom: 48px;
+}
+
+
+.search-container {
+    position: relative;
+}
+
+
+.search-container input {
+    width: 100%;
+
+    height: 54px;
+
+    padding: 0 50px 0 20px;
+
+    border: 1px solid var(--border);
+
+    outline: none;
+
+    background: var(--card);
+
+    color: var(--white);
+
+    font-size: 11px;
+
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.search-container input::placeholder {
+    color: var(--grey-dark);
+}
+
+
+.search-container input:focus {
+    border-color:
+        rgba(213, 177, 90, 0.55);
+
+    background: var(--card-hover);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(213, 177, 90, 0.04);
+}
+
+
+.search-icon {
+    position: absolute;
+
+    top: 50%;
+    right: 18px;
+
+    transform: translateY(-50%);
+
+    color: var(--gold);
+
+    font-size: 21px;
+
+    pointer-events: none;
+}
+
+
+.filter-container select {
+    width: 100%;
+
+    height: 54px;
+
+    padding: 0 18px;
+
+    border: 1px solid var(--border);
+
+    outline: none;
+
+    background: var(--card);
+
+    color: var(--grey);
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.3s ease,
+        color 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.filter-container select:hover,
+.filter-container select:focus {
+    border-color:
+        rgba(213, 177, 90, 0.5);
+
+    background: var(--card-hover);
+
+    color: var(--white);
+}
+
+
+.filter-container select option {
+    background: var(--card);
+
+    color: var(--white);
+}
+
+
+/* ==========================================
+   MOVIE GRID
+========================================== */
+
+.movies-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 34px 18px;
+}
+
+
+/* ==========================================
+   MOVIE CARD
+========================================== */
+
+.movie-card {
+    min-width: 0;
+
+    animation:
+        cardAppear 0.6s ease both;
+}
+
+
+.movie-card-button {
+    width: 100%;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: inherit;
+
+    text-align: left;
+}
+
+
+/* POSTER */
+
+.movie-poster {
+    position: relative;
+
+    aspect-ratio: 2 / 3;
+
+    overflow: hidden;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    transition:
+        border-color 0.4s ease,
+        transform 0.4s ease;
+}
+
+
+.movie-poster::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.8),
+            transparent 45%
+        );
+
+    pointer-events: none;
+}
+
+
+.movie-poster img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.65s
+        cubic-bezier(0.2, 0.8, 0.2, 1),
+        filter 0.5s ease;
+}
+
+
+/* OVERLAY */
+
+.poster-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(0, 0, 0, 0.25);
+
+    opacity: 0;
+
+    transition:
+        opacity 0.4s ease;
+}
+
+
+.view-movie {
+    padding: 10px 18px;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.6);
+
+    background:
+        rgba(0, 0, 0, 0.45);
+
+    color: var(--white);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    transform: translateY(12px);
+
+    transition:
+        transform 0.4s ease,
+        background 0.3s ease;
+}
+
+
+.movie-card-button:hover .movie-poster {
+    border-color:
+        rgba(213, 177, 90, 0.45);
+
+    transform: translateY(-5px);
+}
+
+
+.movie-card-button:hover .movie-poster img {
+    transform: scale(1.07);
+
+    filter: brightness(0.68);
+}
+
+
+.movie-card-button:hover .poster-overlay {
+    opacity: 1;
+}
+
+
+.movie-card-button:hover .view-movie {
+    transform: translateY(0);
+}
+
+
+.movie-card-button:focus-visible {
+    outline: none;
+}
+
+
+.movie-card-button:focus-visible .movie-poster {
+    border-color: var(--gold);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(213, 177, 90, 0.15);
+}
+
+
+/* CARD INFO */
+
+.movie-card-info {
+    padding: 16px 2px 0;
+}
+
+
+.movie-card-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 8px;
+}
+
+
+.movie-genre {
+    color: var(--gold);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+
+.movie-rating {
+    color: var(--grey);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 9px;
+}
+
+
+.movie-title {
+    overflow: hidden;
+
+    color: var(--white);
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 20px;
+
+    font-weight: 500;
+
+    line-height: 1.15;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.3s ease;
+}
+
+
+.movie-card-button:hover .movie-title {
+    color: var(--gold-light);
+}
+
+
+.movie-card-meta {
+    display: flex;
+
+    gap: 7px;
+
+    margin-top: 8px;
+
+    color: var(--grey-dark);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 8px;
+}
+
+
+/* ==========================================
+   NO RESULTS
+========================================== */
+
+.no-results {
+    padding: 100px 20px;
+
+    text-align: center;
+}
+
+
+.no-results-icon {
+    margin-bottom: 20px;
+
+    color: var(--gold);
+
+    font-size: 45px;
+}
+
+
+.no-results h3 {
+    margin-bottom: 8px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 30px;
+
+    font-weight: 500;
+}
+
+
+.no-results p {
+    color: var(--grey);
+
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   ERROR
+========================================== */
+
+.error-message {
+    grid-column: 1 / -1;
+
+    padding: 80px 20px;
+
+    border: 1px solid var(--border);
+
+    text-align: center;
+}
+
+
+.error-message h3 {
+    margin-bottom: 10px;
+
+    color: var(--white);
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 28px;
+}
+
+
+.error-message p {
+    color: var(--grey);
+
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   ABOUT
+========================================== */
+
+.about-section {
+    position: relative;
+
+    padding: 155px 0;
+
+    background: var(--black);
+
+    border-top: 1px solid var(--border);
+}
+
+
+.about-section::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--gold),
+            transparent
+        );
+
+    opacity: 0.25;
+}
+
+
+.about-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 120px;
+}
+
+
+.about-heading h2 {
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(50px, 6vw, 80px);
+
+    font-weight: 500;
+
+    line-height: 0.95;
+
+    letter-spacing: -3px;
+}
+
+
+.about-heading h2 em {
+    color: var(--gold);
+}
+
+
+.about-content {
+    max-width: 580px;
+
+    padding-top: 35px;
+}
+
+
+.about-content p {
+    margin-bottom: 25px;
+
+    color: var(--grey);
+
+    font-size: 13px;
+
+    line-height: 2;
+}
+
+
+.about-content .about-main {
+    color: var(--white);
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 25px;
+
+    line-height: 1.5;
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer {
+    padding: 45px 0;
+
+    background: #030303;
+
+    border-top: 1px solid var(--border);
+}
+
+
+.footer-container {
+    width: min(var(--container), 92%);
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.footer-logo {
+    color: var(--white);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+}
+
+
+.footer-container p {
+    color: var(--grey-dark);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+}
+
+
+.footer-copy {
+    text-align: right;
+}
+
+
+/* ==========================================
+   MODAL
+========================================== */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 40px;
+
+    visibility: hidden;
+
+    opacity: 0;
+
+    transition:
+        visibility 0.4s ease,
+        opacity 0.4s ease;
+}
+
+
+.modal.active {
+    visibility: visible;
+
+    opacity: 1;
+}
+
+
+.modal-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        rgba(0, 0, 0, 0.90);
+
+    backdrop-filter: blur(14px);
+
+    -webkit-backdrop-filter: blur(14px);
+}
+
+
+.movie-modal {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(1080px, 100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111111,
+            #080808
+        );
+
+    border: 1px solid var(--border);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0, 0, 0, 0.65);
+
+    transform: translateY(30px) scale(0.98);
+
+    transition:
+        transform 0.45s ease;
+}
+
+
+.modal.active .movie-modal {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* ==========================================
+   CLOSE BUTTON
+========================================== */
+
+.close-modal {
+    position: absolute;
+
+    z-index: 10;
+
+    top: 20px;
+    right: 20px;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid var(--border-light);
+
+    background:
+        rgba(5, 5, 5, 0.8);
+
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.close-modal span {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 18px;
+    height: 1px;
+
+    background: var(--white);
+}
+
+
+.close-modal span:first-child {
+    transform:
+        translate(-50%, -50%)
+        rotate(45deg);
+}
+
+
+.close-modal span:last-child {
+    transform:
+        translate(-50%, -50%)
+        rotate(-45deg);
+}
+
+
+.close-modal:hover {
+    border-color: var(--gold);
+
+    background:
+        rgba(213, 177, 90, 0.1);
+
+    transform: rotate(90deg);
+}
+
+
+/* ==========================================
+   MOVIE INFO MODAL
+========================================== */
+
+.movie-info {
+    display: grid;
+
+    grid-template-columns: 330px 1fr;
+
+    gap: 60px;
+
+    padding: 55px;
+}
+
+
+.movie-poster-container {
+    position: relative;
+
+    aspect-ratio: 2 / 3;
+
+    overflow: hidden;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+}
+
+
+.movie-poster-container img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.poster-number {
+    position: absolute;
+
+    right: 12px;
+    bottom: 12px;
+
+    padding: 6px 8px;
+
+    background:
+        rgba(5, 5, 5, 0.85);
+
+    color: var(--gold);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+}
+
+
+.movie-details {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+.details-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+
+.modal-genre {
+    color: var(--gold);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+.details-label {
+    color: var(--grey-dark);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+
+.movie-details h2 {
+    max-width: 650px;
+
+    margin-bottom: 18px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(42px, 5vw, 70px);
+
+    font-weight: 500;
+
+    line-height: 0.98;
+
+    letter-spacing: -2px;
+}
+
+
+.movie-meta {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--grey);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 9px;
+}
+
+
+.meta-dot {
+    color: var(--gold);
+}
+
+
+.description-line {
+    width: 55px;
+    height: 1px;
+
+    margin: 35px 0 25px;
+
+    background: var(--gold);
+}
+
+
+.modal-description {
+    max-width: 550px;
+
+    color: #aaa;
+
+    font-size: 13px;
+
+    line-height: 2;
+}
+
+
+/* ==========================================
+   TRAILER
+========================================== */
+
+.trailer-section {
+    padding: 0 55px 55px;
+}
+
+
+.trailer-heading {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+
+.trailer-heading .section-label {
+    margin-bottom: 10px;
+}
+
+
+.trailer-heading h3 {
+    font-family: "Playfair Display", serif;
+
+    font-size: 32px;
+
+    font-weight: 500;
+}
+
+
+.trailer-heading h3 em {
+    color: var(--gold);
+}
+
+
+.trailer-container {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    background: #000;
+
+    border: 1px solid var(--border);
+}
+
+
+.trailer-container iframe {
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+}
+
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #050505;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #292929;
+
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-dark);
+}
+
+
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+@keyframes heroAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes decorationFloat {
+
+    0%,
+    100% {
+        opacity: 0.45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1250px) {
+
+    .movies-grid {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+    }
+
+}
+
+
+/* ==========================================
+   TABLET SMALL
+========================================== */
+
+@media (max-width: 950px) {
+
+    .nav-links {
+        gap: 25px;
+    }
+
+
+    .hero h1 {
+        font-size:
+            clamp(
+                75px,
+                14vw,
+                150px
+            );
+    }
+
+
+    .hero h1 span {
+        margin-left: 60px;
+    }
+
+
+    .movie-controls {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .search-container {
+        grid-column: 1 / -1;
+    }
+
+
+    .movies-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 28px 15px;
+    }
+
+
+    .about-grid {
+        gap: 60px;
+    }
+
+
+    .movie-info {
+        grid-template-columns:
+            250px 1fr;
+
+        gap: 40px;
+
+        padding: 40px;
+    }
+
+
+    .trailer-section {
+        padding:
+            0 40px 40px;
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 650px) {
+
+    .nav-container {
+        height: 70px;
+    }
+
+
+    .logo-text {
+        font-size: 11px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .logo-mark {
+        width: 32px;
+        height: 32px;
+
+        font-size: 18px;
+    }
+
+
+    .nav-links {
+        display: none;
+    }
+
+
+    .logout-button {
+        padding:
+            8px 12px;
+
+        font-size: 8px;
+    }
+
+
+    .hero {
+        min-height: 90vh;
+
+        padding:
+            120px 5% 80px;
+    }
+
+
+    .hero h1 {
+        font-size:
+            clamp(
+                65px,
+                19vw,
+                110px
+            );
+
+        letter-spacing: -6px;
+    }
+
+
+    .hero h1 span {
+        margin-left: 30px;
+    }
+
+
+    .hero-description {
+        margin-top: 30px;
+
+        font-size: 13px;
+    }
+
+
+    .hero-button {
+        margin-top: 30px;
+    }
+
+
+    .movies-section {
+        padding:
+            90px 0 100px;
+    }
+
+
+    .section-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 30px;
+
+        margin-bottom: 35px;
+    }
+
+
+    .section-header h2 {
+        font-size: 48px;
+    }
+
+
+    .movie-counter {
+        align-items: flex-start;
+    }
+
+
+    .movie-controls {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 8px;
+
+        margin-bottom: 35px;
+    }
+
+
+    .movies-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 30px 12px;
+    }
+
+
+    .movie-title {
+        font-size: 17px;
+    }
+
+
+    .movie-card-meta {
+        font-size: 7px;
+    }
+
+
+    .about-section {
+        padding:
+            100px 0;
+    }
+
+
+    .about-grid {
+        display: block;
+    }
+
+
+    .about-heading {
+        margin-bottom: 45px;
+    }
+
+
+    .about-content {
+        padding-top: 0;
+    }
+
+
+    .about-content .about-main {
+        font-size: 21px;
+    }
+
+
+    .footer-container {
+        flex-direction: column;
+
+        gap: 18px;
+
+        text-align: center;
+    }
+
+
+    .footer-copy {
+        text-align: center;
+    }
+
+
+    .modal {
+        padding: 15px;
+    }
+
+
+    .movie-modal {
+        max-height: 95vh;
+    }
+
+
+    .movie-info {
+        display: block;
+
+        padding:
+            35px 25px;
+    }
+
+
+    .movie-poster-container {
+        width: 180px;
+
+        margin:
+            0 auto 35px;
+    }
+
+
+    .movie-details h2 {
+        font-size: 42px;
+    }
+
+
+    .details-top {
+        margin-bottom: 12px;
+    }
+
+
+    .description-line {
+        margin:
+            25px 0 20px;
+    }
+
+
+    .trailer-section {
+        padding:
+            0 25px 30px;
+    }
+
+
+    .trailer-heading h3 {
+        font-size: 25px;
+    }
+
+}
+
+
+/* ==========================================
+   VERY SMALL MOBILE
+========================================== */
+
+@media (max-width: 380px) {
+
+    .movies-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .movie-poster {
+        aspect-ratio:
+            16 / 10;
+    }
+
+
+    .hero h1 {
+        font-size: 62px;
+    }
+
+
+    .hero h1 span {
+        margin-left: 15px;
+    }
+
+
+    .section-header h2 {
+        font-size: 42px;
+    }
+
+
+    .movie-poster-container {
+        width: 150px;
+    }
+
+}

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="KINO LAB - Discover movies worth watching."
+    >
+
+    <title>KINO LAB — Your Personal Cinema</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="navbar">
+        <div class="nav-container">
+
+            <a href="#home" class="logo">
+                <span class="logo-mark">K</span>
+                <span class="logo-text">KINO LAB</span>
+            </a>
+
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="#movies">Movies</a>
+                <a href="#about">About</a>
+            </nav>
+
+            <button
+                id="logoutButton"
+                class="logout-button"
+                type="button"
+            >
+                Logout
+            </button>
+
+        </div>
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main>
+
+        <section id="home" class="hero">
+
+            <div class="hero-content">
+
+                <p class="section-label">
+                    YOUR PERSONAL CINEMA
+                </p>
+
+                <h1>
+                    KINO
+                    <span>LAB</span>
+                </h1>
+
+                <p class="hero-description">
+                    Discover stories worth watching.
+                </p>
+
+                <a
+                    href="#movies"
+                    class="hero-button"
+                >
+                    Explore collection
+                    <span>→</span>
+                </a>
+
+            </div>
+
+            <div class="hero-decoration">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MOVIES
+        ========================== -->
+
+        <section id="movies" class="movies-section">
+
+            <div class="section-container">
+
+                <div class="section-header">
+
+                    <div>
+                        <p class="section-label">
+                            THE COLLECTION
+                        </p>
+
+                        <h2>
+                            Movies worth
+                            <em>watching.</em>
+                        </h2>
+                    </div>
+
+                    <div class="movie-counter">
+                        <span id="movieCount">0</span>
+                        <span>FILMS</span>
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     CONTROLS
+                ========================== -->
+
+                <div class="movie-controls">
+
+                    <div class="search-container">
+
+                        <label
+                            for="searchInput"
+                            class="sr-only"
+                        >
+                            Search movies
+                        </label>
+
+                        <input
+                            type="search"
+                            id="searchInput"
+                            placeholder="Search movies..."
+                            autocomplete="off"
+                        >
+
+                        <span class="search-icon">
+                            ⌕
+                        </span>
+
+                    </div>
+
+
+                    <div class="filter-container">
+
+                        <label
+                            for="genreFilter"
+                            class="sr-only"
+                        >
+                            Filter by genre
+                        </label>
+
+                        <select id="genreFilter">
+                            <option value="all">
+                                All genres
+                            </option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-container">
+
+                        <label
+                            for="sortFilter"
+                            class="sr-only"
+                        >
+                            Sort movies
+                        </label>
+
+                        <select id="sortFilter">
+
+                            <option value="rating">
+                                Highest rated
+                            </option>
+
+                            <option value="newest">
+                                Newest
+                            </option>
+
+                            <option value="oldest">
+                                Oldest
+                            </option>
+
+                            <option value="title">
+                                Title A-Z
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     MOVIE GRID
+                ========================== -->
+
+                <div
+                    id="moviesGrid"
+                    class="movies-grid"
+                >
+                    <!-- Movies are loaded from movies.json using JavaScript -->
+                </div>
+
+
+                <!-- =========================
+                     NO RESULTS
+                ========================== -->
+
+                <div
+                    id="noResults"
+                    class="no-results"
+                    style="display: none;"
+                >
+
+                    <div class="no-results-icon">
+                        ⌕
+                    </div>
+
+                    <h3>
+                        No movies found
+                    </h3>
+
+                    <p>
+                        Try changing your search or filters.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+
+        <section
+            id="about"
+            class="about-section"
+        >
+
+            <div class="section-container">
+
+                <div class="about-grid">
+
+                    <div class="about-heading">
+
+                        <p class="section-label">
+                            ABOUT KINO LAB
+                        </p>
+
+                        <h2>
+                            Cinema,
+                            <em>curated.</em>
+                        </h2>
+
+                    </div>
+
+
+                    <div class="about-content">
+
+                        <p class="about-main">
+                            KINO LAB is a personal movie collection
+                            designed to make discovering films simple,
+                            fast and enjoyable.
+                        </p>
+
+                        <p>
+                            Browse through the collection, search for
+                            your favourite movies and filter them by
+                            genre or rating.
+                        </p>
+
+                        <p>
+                            Every movie contains information about its
+                            release year, genre, rating, duration and
+                            description.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-logo">
+                KINO LAB
+            </div>
+
+            <p>
+                Your personal cinema.
+            </p>
+
+            <p class="footer-copy">
+                © 2026 KINO LAB
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         MOVIE MODAL
+    ========================== -->
+
+    <div
+        id="movieModal"
+        class="modal"
+        aria-hidden="true"
+    >
+
+        <div
+            id="modalOverlay"
+            class="modal-overlay"
+        ></div>
+
+
+        <article class="movie-modal">
+
+            <button
+                id="closeModal"
+                class="close-modal"
+                type="button"
+                aria-label="Close movie information"
+            >
+                <span></span>
+                <span></span>
+            </button>
+
+
+            <!-- =========================
+                 MOVIE INFORMATION
+            ========================== -->
+
+            <div class="movie-info">
+
+                <div class="movie-poster-container">
+
+                    <img
+                        id="modalPoster"
+                        src=""
+                        alt=""
+                    >
+
+                    <div class="poster-number">
+                        KINO LAB
+                    </div>
+
+                </div>
+
+
+                <div class="movie-details">
+
+                    <div class="details-top">
+
+                        <p
+                            id="modalGenre"
+                            class="modal-genre"
+                        ></p>
+
+                        <span class="details-label">
+                            MOVIE
+                        </span>
+
+                    </div>
+
+
+                    <h2 id="modalTitle"></h2>
+
+
+                    <div class="movie-meta">
+
+                        <span id="modalYear"></span>
+
+                        <span class="meta-dot">
+                            •
+                        </span>
+
+                        <span id="modalDuration"></span>
+
+                        <span class="meta-dot">
+                            •
+                        </span>
+
+                        <span id="modalRating"></span>
+
+                    </div>
+
+
+                    <div class="description-line"></div>
+
+
+                    <p
+                        id="modalDescription"
+                        class="modal-description"
+                    ></p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 TRAILER
+            ========================== -->
+
+            <div class="trailer-section">
+
+                <div class="trailer-heading">
+
+                    <div>
+
+                        <p class="section-label">
+                            WATCH TRAILER
+                        </p>
+
+                        <h3>
+                            See the story
+                            <em>come alive.</em>
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="trailer-container">
+
+                    <iframe
+                        id="modalTrailer"
+                        src=""
+                        title="Movie trailer"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
