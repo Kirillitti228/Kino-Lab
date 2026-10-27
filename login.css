@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap');
 
-
 :root {
-
     --background: #080808;
     --card: #111111;
 
@@ -12,22 +10,15 @@
     --accent: #d4af37;
 
     --border: rgba(255, 255, 255, 0.1);
-
 }
-
 
 * {
-
     margin: 0;
     padding: 0;
-
     box-sizing: border-box;
-
 }
 
-
 body {
-
     min-height: 100vh;
 
     background: var(--background);
@@ -35,37 +26,28 @@ body {
     color: var(--text);
 
     font-family: "Inter", sans-serif;
-
 }
 
-
 .auth-page {
-
     min-height: 100vh;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     padding: 30px;
 
     background:
-
         radial-gradient(
             circle at center,
             rgba(212, 175, 55, 0.08),
             transparent 35%
         ),
-
         #080808;
-
 }
 
-
 .auth-container {
-
     width: 100%;
 
     max-width: 1050px;
@@ -77,21 +59,18 @@ body {
     gap: 100px;
 
     align-items: center;
-
 }
 
 
-/* BRAND */
+/* =========================
+   BRAND
+========================= */
 
 .auth-brand {
-
     padding: 20px;
-
 }
 
-
 .brand-small {
-
     color: var(--accent);
 
     font-size: 11px;
@@ -99,12 +78,9 @@ body {
     letter-spacing: 6px;
 
     margin-bottom: 20px;
-
 }
 
-
 .auth-brand h1 {
-
     font-family: "Playfair Display", serif;
 
     font-size: clamp(
@@ -118,25 +94,22 @@ body {
     font-weight: 500;
 
     letter-spacing: -6px;
-
 }
 
-
 .brand-description {
-
     color: var(--muted);
 
     margin-top: 35px;
 
     font-size: 16px;
-
 }
 
 
-/* CARD */
+/* =========================
+   CARD
+========================= */
 
 .auth-card {
-
     background: rgba(17, 17, 17, 0.9);
 
     border: 1px solid var(--border);
@@ -144,14 +117,14 @@ body {
     padding: 35px;
 
     backdrop-filter: blur(20px);
-
 }
 
 
-/* TABS */
+/* =========================
+   TABS
+========================= */
 
 .auth-tabs {
-
     display: grid;
 
     grid-template-columns: 1fr 1fr;
@@ -159,12 +132,9 @@ body {
     border-bottom: 1px solid var(--border);
 
     margin-bottom: 35px;
-
 }
 
-
 .auth-tab {
-
     background: transparent;
 
     border: none;
@@ -178,61 +148,46 @@ body {
     font-size: 14px;
 
     transition: 0.3s;
-
 }
 
-
 .auth-tab.active {
-
     color: white;
 
     border-bottom: 2px solid var(--accent);
-
 }
 
 
-/* FORM */
+/* =========================
+   FORM
+========================= */
 
 .auth-form {
-
     display: flex;
 
     flex-direction: column;
 
     gap: 20px;
-
 }
-
 
 .auth-form.hidden {
-
     display: none;
-
 }
 
-
 .input-group {
-
     display: flex;
 
     flex-direction: column;
 
     gap: 8px;
-
 }
 
-
 .input-group label {
-
     font-size: 12px;
 
     color: var(--muted);
-
 }
 
-
 .input-group input {
-
     width: 100%;
 
     padding: 15px;
@@ -246,28 +201,22 @@ body {
     outline: none;
 
     transition: 0.3s;
-
 }
-
 
 .input-group input:focus {
-
     border-color: var(--accent);
-
 }
-
 
 .input-group input::placeholder {
-
     color: #555;
-
 }
 
 
-/* BUTTON */
+/* =========================
+   MAIN BUTTON
+========================= */
 
 .submit-button {
-
     margin-top: 10px;
 
     padding: 16px;
@@ -283,23 +232,135 @@ body {
     cursor: pointer;
 
     transition: 0.3s;
-
 }
 
-
 .submit-button:hover {
-
     background: #f0cf62;
 
     transform: translateY(-2px);
-
 }
 
 
-/* MESSAGE */
+/* =========================
+   OR DIVIDER
+========================= */
+
+.divider {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 2px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: var(--border);
+}
+
+.divider span {
+    color: #666;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    font-weight: 500;
+}
+
+
+/* =========================
+   GOOGLE BUTTON
+========================= */
+
+.google-button {
+    width: 100%;
+
+    min-height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    background: #ffffff;
+
+    border: 1px solid #d9d9d9;
+
+    color: #202124;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.google-button:hover {
+    background: #f5f5f5;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.google-button:active {
+    transform: translateY(0);
+}
+
+.google-button:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+.google-icon {
+    width: 20px;
+
+    height: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.google-icon svg {
+    width: 20px;
+
+    height: 20px;
+
+    display: block;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
 
 .auth-message {
-
     min-height: 20px;
 
     margin-top: 20px;
@@ -309,77 +370,53 @@ body {
     font-size: 13px;
 
     color: var(--muted);
-
 }
-
 
 .auth-message.error {
-
     color: #ff6b6b;
-
 }
-
 
 .auth-message.success {
-
     color: #7ee787;
-
 }
 
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 800px) {
 
     .auth-container {
-
         grid-template-columns: 1fr;
 
         gap: 40px;
 
         max-width: 500px;
-
     }
-
 
     .auth-brand {
-
         text-align: center;
-
     }
 
-
     .auth-brand h1 {
-
         font-size: 80px;
 
         letter-spacing: -4px;
-
     }
-
 }
-
 
 @media (max-width: 500px) {
 
     .auth-page {
-
         padding: 15px;
-
     }
-
 
     .auth-card {
-
         padding: 25px 20px;
-
     }
-
 
     .auth-brand h1 {
-
         font-size: 20vw;
-
     }
-
 }

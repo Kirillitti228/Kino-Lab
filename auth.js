@@ -15,6 +15,12 @@ const registerForm = document.getElementById("registerForm");
 
 const authMessage = document.getElementById("authMessage");
 
+const googleLoginButton =
+    document.getElementById("googleLoginButton");
+
+const googleRegisterButton =
+    document.getElementById("googleRegisterButton");
+
 
 // ==========================================
 // FIREBASE VARIABLES
@@ -114,9 +120,6 @@ async function initializeFirebase() {
             firebaseAuth.getAuth(app);
 
 
-        // Keep the user logged in
-        // when moving between pages
-
         await firebaseAuth.setPersistence(
             auth,
             firebaseAuth.browserLocalPersistence
@@ -152,7 +155,7 @@ async function initializeFirebase() {
 
 
 // ==========================================
-// REGISTER
+// REGISTER WITH EMAIL
 // ==========================================
 
 registerForm.addEventListener(
@@ -192,8 +195,6 @@ registerForm.addEventListener(
                 .getElementById("confirmPassword")
                 .value;
 
-
-        // Check passwords
 
         if (password !== confirmPassword) {
 
@@ -241,9 +242,6 @@ registerForm.addEventListener(
             );
 
 
-            // Wait a little before opening
-            // the main page
-
             setTimeout(() => {
 
                 window.location.replace(
@@ -273,7 +271,7 @@ registerForm.addEventListener(
 
 
 // ==========================================
-// LOGIN
+// LOGIN WITH EMAIL
 // ==========================================
 
 loginForm.addEventListener(
@@ -316,8 +314,6 @@ loginForm.addEventListener(
             );
 
 
-            // Make sure the login is saved
-
             await firebaseAuth.setPersistence(
                 auth,
                 firebaseAuth.browserLocalPersistence
@@ -350,8 +346,6 @@ loginForm.addEventListener(
             );
 
 
-            // Open the main page
-
             setTimeout(() => {
 
                 window.location.replace(
@@ -377,6 +371,122 @@ loginForm.addEventListener(
         }
 
     }
+);
+
+
+// ==========================================
+// GOOGLE AUTHENTICATION
+// ==========================================
+
+async function signInWithGoogle() {
+
+    if (!auth || !firebaseAuth) {
+
+        showMessage(
+            "Firebase is not ready yet. Please wait a moment.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        showMessage(
+            "Opening Google sign-in...",
+            ""
+        );
+
+
+        googleLoginButton.disabled = true;
+        googleRegisterButton.disabled = true;
+
+
+        await firebaseAuth.setPersistence(
+            auth,
+            firebaseAuth.browserLocalPersistence
+        );
+
+
+        const provider =
+            new firebaseAuth.GoogleAuthProvider();
+
+
+        provider.setCustomParameters({
+            prompt: "select_account"
+        });
+
+
+        const result =
+            await firebaseAuth.signInWithPopup(
+                auth,
+                provider
+            );
+
+
+        console.log(
+            "Google login successful."
+        );
+
+
+        console.log(
+            "Google user:",
+            result.user.email
+        );
+
+
+        showMessage(
+            "Google login successful!",
+            "success"
+        );
+
+
+        setTimeout(() => {
+
+            window.location.replace(
+                "index.html"
+            );
+
+        }, 500);
+
+
+    } catch (error) {
+
+        console.error(
+            "Google login error:",
+            error
+        );
+
+
+        googleLoginButton.disabled = false;
+        googleRegisterButton.disabled = false;
+
+
+        showMessage(
+            getFirebaseErrorMessage(error),
+            "error"
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// GOOGLE BUTTONS
+// ==========================================
+
+googleLoginButton.addEventListener(
+    "click",
+    signInWithGoogle
+);
+
+
+googleRegisterButton.addEventListener(
+    "click",
+    signInWithGoogle
 );
 
 
@@ -409,7 +519,6 @@ function clearMessage() {
 
     authMessage.textContent =
         "";
-
 
     authMessage.className =
         "auth-message";
@@ -469,6 +578,31 @@ function getFirebaseErrorMessage(error) {
         case "auth/network-request-failed":
 
             return "Network error. Check your internet connection.";
+
+
+        case "auth/popup-closed-by-user":
+
+            return "Google sign-in was cancelled.";
+
+
+        case "auth/popup-blocked":
+
+            return "Your browser blocked the Google sign-in window.";
+
+
+        case "auth/cancelled-popup-request":
+
+            return "Google sign-in was cancelled.";
+
+
+        case "auth/unauthorized-domain":
+
+            return "This website domain is not authorized in Firebase.";
+
+
+        case "auth/account-exists-with-different-credential":
+
+            return "An account with this email already exists using another sign-in method.";
 
 
         default:
